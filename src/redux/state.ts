@@ -1,4 +1,6 @@
-import {rerender} from "../render";
+let rerender = (state: any) => {
+
+}
 
 export type postsType = {
     id: number
@@ -37,7 +39,7 @@ let state: rootStateType = {
             {id: 1, textPost: 'first', likesCount: 23},
             {id: 2, textPost: 'start', likesCount: 12},
         ],
-        newText: "123"
+        newText: ""
     },
     dialogPage: {
         dialogs: [
@@ -58,17 +60,22 @@ export type AddPostType = (newPostText: string) => void
 export type changePostValueType = (newText: string) => void
 
 
-export let addPost = (newPostText: string) => {
+export let addPost = () => {
     const newPost: postsType = {
         id: 3,
-        textPost: newPostText,
+        textPost: state.profilePage.newText,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newText = ''
     rerender(state)
 }
 
 export let changePostValue = (newText:string) => {
     state.profilePage.newText = newText
     rerender(state)
+}
+
+export const subscribe =(observer:any) => {
+rerender = observer
 }
