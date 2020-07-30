@@ -1,9 +1,15 @@
-export type ActionsType = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangePostValueAC>
+import profileReducer, { ActionsType } from "./redusers/profilePageReduser";
 
-export type postsType = {
-    id: number
-    textPost: string
-    likesCount: number
+
+
+export type rootStateType = {
+    profilePage: profilePageType
+    dialogPage: dialogPageType
+}
+
+type dialogPageType = {
+    dialogs: Array<dialogsType>
+    messages: Array<messageType>
 }
 type dialogsType = {
     id: number
@@ -12,18 +18,17 @@ type dialogsType = {
 type messageType = {
     message: string
 }
+
 export type profilePageType = {
     newText: string
     posts: Array<postsType>
 }
-type dialogPageType = {
-    dialogs: Array<dialogsType>
-    messages: Array<messageType>
+export type postsType = {
+    id: number
+    textPost: string
+    likesCount: number
 }
-export type rootStateType = {
-    profilePage: profilePageType
-    dialogPage: dialogPageType
-}
+
 
 export type AddPostType = (newPostText: string) => void
 export type changePostValueType = (newText: string) => void
@@ -82,33 +87,7 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            const newPost: postsType = {
-                id: 3,
-                textPost: action.newText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newText = ''
-            this._rerender()
-        } else if (action.type === "CHANGE-POST-VALUE") {
-            this._state.profilePage.newText = action.newText
-            this._rerender()
-        }
-
-
+       this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._rerender()
     }
-}
-
-export const AddPostAC = (newText: string) => {
-    return {
-        type: "ADD-POST",
-        newText: newText
-    } as const
-}
-export const ChangePostValueAC = (newText: string) => {
-    return {
-        type: "CHANGE-POST-VALUE",
-        newText: newText
-    } as const
 }

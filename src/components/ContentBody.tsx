@@ -3,8 +3,9 @@ import '../App.css';
 import {Route} from 'react-router-dom';
 import Profile from "./Profile";
 import {
-    ActionsType, AddPostType, changePostValueType, rootStateType
+     AddPostType, changePostValueType, rootStateType
 } from '../redux/state';
+import {ActionsType} from "../redux/redusers/profilePageReduser";
 
 type ContentType = {
     state: rootStateType
