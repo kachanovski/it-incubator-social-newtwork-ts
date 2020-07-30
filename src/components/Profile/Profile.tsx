@@ -1,24 +1,18 @@
 import React, {ChangeEvent} from 'react';
 import '../../App.css';
 import Posts from '../Posts';
-import {postsType, profilePageType} from "../../types/types";
+import {PropsFromRedux} from "./ProfileContainer";
 
-type ProfileProps = {
-    posts: Array<postsType>
-    profilePage: profilePageType
-    addPost: () => void
-    changeNewTextValue: (newText: string) => void
-}
+type ProfileProps = PropsFromRedux
+
 
 const Profile = (props: ProfileProps) => {
 
     let addPost = () => {
-        props.addPost()
+        props.addPost(props.newText)
     }
     let changeNewTextValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewTextValue(e.currentTarget.value)
-
-
     }
 
     return (

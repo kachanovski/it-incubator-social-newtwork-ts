@@ -1,32 +1,33 @@
-import React from 'react';
 import '../../App.css';
 import {AddPostAC, ChangePostValueAC} from '../../redux/redusers/profilePageReduser';
 import Profile from "./Profile";
-import {StoreType} from "../../redux/store";
+import {connect, ConnectedProps} from "react-redux";
+import {Dispatch} from "redux";
+import {StoreReduxType} from "../../redux/store";
 
-type ProfileProps = {
-    store: StoreType
+let mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        addPost: (newText: string) => {
+            dispatch(AddPostAC(newText))
+        },
+        changeNewTextValue: (newText: string) => {
+            dispatch(ChangePostValueAC(newText))
+        }
+    }
+}
+let mapStateToProps = (state: StoreReduxType) => {
+    return {
+        profilePage: state.profilePage,
+        posts: state.profilePage.posts,
+        newText: state.profilePage.newText
+    }
 }
 
-const ProfileContainer = (props: ProfileProps) => {
+const connector = connect(mapStateToProps, mapDispatchToProps)
 
-    const state = props.store.getState()
+export type PropsFromRedux = ConnectedProps<typeof connector>
 
-    let addPost = () => {
-        props.store.dispatch(AddPostAC(state.profilePage.newText))
 
-    }
-    let changeNewTextValue = (newText: string) => {
-        props.store.dispatch(ChangePostValueAC(newText))
-
-    }
-
-    return (
-        <Profile addPost={addPost}
-                 changeNewTextValue={changeNewTextValue}
-                 profilePage={state.profilePage}
-                 posts={state.profilePage.posts}/>
-    );
-}
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
 
 export default ProfileContainer;

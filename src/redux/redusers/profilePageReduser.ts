@@ -7,11 +7,13 @@ const ADD_POST = "ADD_POST"
 const CHANGE_POST_VALUE = "CHANGE_POST_VALUE"
 
 
-let initialState: profilePageType = { posts: [
+let initialState: profilePageType = {
+    posts: [
         {id: 1, textPost: 'first', likesCount: 23},
         {id: 2, textPost: 'start', likesCount: 12},
     ],
-    newText: ""}
+    newText: ""
+}
 
 export const profileReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
@@ -23,16 +25,12 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
             }
             state.posts.push(newPost)
             state.newText = ''
-            return state;
-
+            return {...state};
         case CHANGE_POST_VALUE:
             state.newText = action.newText
-            return state;
-
+            return {...state};
     }
-
     return state
-
 }
 
 export const AddPostAC = (newText: string) => {
