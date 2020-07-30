@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import ContentBody from "./components/ContentBody/ContentBody";
 
 
-const App: React.FC = (props) => {
+const App: React.FC = () => {
 
     return (
         <BrowserRouter>

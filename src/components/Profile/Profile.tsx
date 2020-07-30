@@ -9,7 +9,7 @@ type ProfileProps = PropsFromRedux
 const Profile = (props: ProfileProps) => {
 
     let addPost = () => {
-        props.addPost(props.newText)
+        props.addPost(props.profilePage.newText)
     }
     let changeNewTextValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewTextValue(e.currentTarget.value)

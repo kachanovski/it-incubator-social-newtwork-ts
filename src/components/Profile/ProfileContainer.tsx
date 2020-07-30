@@ -18,8 +18,6 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
 let mapStateToProps = (state: StoreReduxType) => {
     return {
         profilePage: state.profilePage,
-        posts: state.profilePage.posts,
-        newText: state.profilePage.newText
     }
 }
 
