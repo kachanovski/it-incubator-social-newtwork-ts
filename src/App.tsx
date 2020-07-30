@@ -4,25 +4,27 @@ import Header from "./components/Header";
 import ContentBody from './components/ContentBody';
 import NavBar from "./components/NavBar";
 import {BrowserRouter} from "react-router-dom";
-import {rootStateType, AddPostType, changePostValueType} from './redux/state';
+import {store, StoreType} from './redux/state';
 
 
 export type AppProps = {
-    state: rootStateType
-    addPost: AddPostType
-    changePostValue:changePostValueType
+    store:StoreType
 }
 
 
-const App = (props: AppProps) => {
+const App: React.FC<AppProps> = (props) => {
+
+    const state = props.store.getState()
+
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
                 <NavBar/>
-                <ContentBody changePostValue={props.changePostValue}
-                             state={props.state}
-                             addPost={props.addPost}/>
+                <ContentBody changePostValue={props.store.changePostValue.bind(props.store)}
+                             state={state}
+                             dispatch={store.dispatch.bind(props.store)}
+                             addPost={props.store.addPost.bind(props.store)}/>
             </div>
         </BrowserRouter>
     );

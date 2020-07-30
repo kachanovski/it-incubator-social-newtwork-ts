@@ -1,13 +1,9 @@
-let rerender = (state: any) => {
-
-}
+export type ActionsType = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangePostValueAC>
 
 export type postsType = {
     id: number
     textPost: string
     likesCount: number
-
-
 }
 type dialogsType = {
     id: number
@@ -17,65 +13,102 @@ type messageType = {
     message: string
 }
 export type profilePageType = {
-    newText:string
+    newText: string
     posts: Array<postsType>
-
 }
 type dialogPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messageType>
 }
-
-
 export type rootStateType = {
     profilePage: profilePageType
     dialogPage: dialogPageType
-
 }
-
-let state: rootStateType = {
-    profilePage: {
-        posts: [
-            {id: 1, textPost: 'first', likesCount: 23},
-            {id: 2, textPost: 'start', likesCount: 12},
-        ],
-        newText: ""
-    },
-    dialogPage: {
-        dialogs: [
-            {id: 1, name: 'Lexa'},
-            {id: 2, name: 'Aliaksandr'},
-        ],
-        messages: [
-            {message: 'hi'},
-            {message: 'yo'},
-            {message: 'uo'}
-        ]
-    },
-}
-
-export default state
 
 export type AddPostType = (newPostText: string) => void
 export type changePostValueType = (newText: string) => void
 
+export type StoreType = {
+    _state: rootStateType
+    changePostValue: (newText: string) => void
+    addPost: () => void
+    _rerender: () => void
+    subscribe: (callback: () => void) => void
+    getState: () => rootStateType
+    dispatch: (action: ActionsType) => void
+}
 
-export let addPost = () => {
-    const newPost: postsType = {
-        id: 3,
-        textPost: state.profilePage.newText,
-        likesCount: 0
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, textPost: 'first', likesCount: 23},
+                {id: 2, textPost: 'start', likesCount: 12},
+            ],
+            newText: ""
+        },
+        dialogPage: {
+            dialogs: [
+                {id: 1, name: 'Lexa'},
+                {id: 2, name: 'Aliaksandr'},
+            ],
+            messages: [
+                {message: 'hi'},
+                {message: 'yo'},
+                {message: 'uo'}
+            ]
+        },
+    },
+    changePostValue(newText: string) {
+        this._state.profilePage.newText = newText
+        this._rerender()
+    },
+    addPost() {
+        const newPost: postsType = {
+            id: 3,
+            textPost: this._state.profilePage.newText,
+            likesCount: 0
+        }
+        this._state.profilePage.posts.push(newPost)
+        this._state.profilePage.newText = ''
+        this._rerender()
+    },
+    _rerender() {
+    },
+    subscribe(callback) {
+        this._rerender = callback
+    },
+    getState() {
+        return this._state
+    },
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            const newPost: postsType = {
+                id: 3,
+                textPost: action.newText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newText = ''
+            this._rerender()
+        } else if (action.type === "CHANGE-POST-VALUE") {
+            this._state.profilePage.newText = action.newText
+            this._rerender()
+        }
+
+
     }
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newText = ''
-    rerender(state)
 }
 
-export let changePostValue = (newText:string) => {
-    state.profilePage.newText = newText
-    rerender(state)
+export const AddPostAC = (newText: string) => {
+    return {
+        type: "ADD-POST",
+        newText: newText
+    } as const
 }
-
-export const subscribe =(observer:any) => {
-rerender = observer
+export const ChangePostValueAC = (newText: string) => {
+    return {
+        type: "CHANGE-POST-VALUE",
+        newText: newText
+    } as const
 }

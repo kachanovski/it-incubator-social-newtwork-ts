@@ -1,14 +1,16 @@
 import React from 'react';
 import '../App.css';
 import {Route} from 'react-router-dom';
-import Dialogs from './Dialogs';
 import Profile from "./Profile";
-import {AddPostType, changePostValueType, rootStateType} from '../redux/state';
+import {
+    ActionsType, AddPostType, changePostValueType, rootStateType
+} from '../redux/state';
 
 type ContentType = {
     state: rootStateType
-    addPost:AddPostType
-    changePostValue:changePostValueType
+    addPost: AddPostType
+    changePostValue: changePostValueType
+    dispatch: (action: ActionsType) => void
 }
 
 const ContentBody = (props: ContentType) => {
@@ -19,6 +21,7 @@ const ContentBody = (props: ContentType) => {
             {/*  <Route path='/dialogs' render={() => (<Dialogs />)} />*/}
             <Route path='/profile' render={() =>
                 (<Profile profilePage={props.state.profilePage}
+                          dispatch={props.dispatch}
                           changePostValue={props.changePostValue}
                           addPost={props.addPost}/>)}/>
         </div>
