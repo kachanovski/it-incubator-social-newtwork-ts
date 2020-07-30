@@ -1,24 +1,20 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import {Route} from 'react-router-dom';
-import Profile from "./Profile";
-import {ActionsType} from "../redux/redusers/profilePageReduser";
-import {rootStateType} from '../types/types';
+import {StoreType} from "../../redux/store";
+import ProfileContainer from "../Profile/ProfileContainer";
 
 type ContentType = {
-    state: rootStateType
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
 const ContentBody = (props: ContentType) => {
-    debugger
     return (
 
         <div className="ContentBody">
             {/*  <Route path='/dialogs' render={() => (<Dialogs />)} />*/}
             <Route path='/profile' render={() =>
-                (<Profile profilePage={props.state.profilePage}
-                          dispatch={props.dispatch}/>
+                (<ProfileContainer store={props.store}/>
                 )
             }/>
         </div>

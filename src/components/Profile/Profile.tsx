@@ -1,23 +1,23 @@
 import React, {ChangeEvent} from 'react';
-import '../App.css';
-import Posts from './Posts';
-import {ActionsType, AddPostAC, ChangePostValueAC} from "../redux/redusers/profilePageReduser";
-import {profilePageType} from '../types/types';
-
+import '../../App.css';
+import Posts from '../Posts';
+import {postsType, profilePageType} from "../../types/types";
 
 type ProfileProps = {
+    posts: Array<postsType>
     profilePage: profilePageType
-    dispatch: (action: ActionsType) => void
+    addPost: () => void
+    changeNewTextValue: (newText: string) => void
 }
 
 const Profile = (props: ProfileProps) => {
 
     let addPost = () => {
-        props.dispatch(AddPostAC(props.profilePage.newText))
-
+        props.addPost()
     }
     let changeNewTextValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(ChangePostValueAC(e.currentTarget.value))
+        props.changeNewTextValue(e.currentTarget.value)
+
 
     }
 
