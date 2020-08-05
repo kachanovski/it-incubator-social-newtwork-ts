@@ -1,0 +1,16 @@
+.profileInfo{
+    height: 40vh;
+    background-color: green;
+    opacity: 50%;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+    justify-content: center;
+}
+
+.profileInfoAvatar{
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    background-color: deeppink;
+    border-radius: 50%;
+}

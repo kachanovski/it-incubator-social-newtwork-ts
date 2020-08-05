@@ -4,15 +4,17 @@ export type rootStateType = {
 }
 
 
-type dialogPageType = {
-    dialogs: Array<dialogsType>
+export type dialogPageType = {
     messages: Array<messageType>
+    newMessage: string
 }
 type dialogsType = {
     id: number
     name: string
 }
-type messageType = {
+
+export type messageType = {
+    id: number
     message: string
 }
 

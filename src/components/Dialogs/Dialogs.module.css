@@ -1,0 +1,29 @@
+.dialogPage {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 90vh 10vh;
+    grid-template-areas: 'd m' 'd a';
+}
+
+.dialogs {
+    grid-area: d;
+}
+
+.dialog {
+    border: 2px solid black;
+    height: 70px;
+    border-radius: 10px;
+    margin: 2px;
+}
+
+.messages {
+    grid-area: m;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.addMessage {
+    grid-area: a;
+}
+
+

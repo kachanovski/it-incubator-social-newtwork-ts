@@ -1,4 +1,3 @@
-import '../../App.css';
 import {AddPostAC, ChangePostValueAC} from '../../redux/redusers/profilePageReduser';
 import Profile from "./Profile";
 import {connect, ConnectedProps} from "react-redux";

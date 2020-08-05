@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.css';
-import Post from "./Post";
-import { postsType } from '../types/types';
+import {postsType} from "../../../types/types";
+import Post from "./Post/Post";
+import s from './Posts.module.css'
 
 
 type PostPropsType = {
@@ -13,7 +13,7 @@ const Posts = (props: PostPropsType) => {
                                                      posts={posts}
                                                      />)
     return (
-        <div>
+        <div className={s.posts}>
             {postsElemets}
         </div>
     );

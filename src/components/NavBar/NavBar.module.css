@@ -1,0 +1,17 @@
+.navBar {
+    text-align: center;
+    grid-area: n;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.navTab{
+    text-decoration: none;
+    color: white;
+font-size: 30px;
+}
+
+.navTab.active{
+    color: slateblue ;
+}
+
