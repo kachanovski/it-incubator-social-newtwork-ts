@@ -2,7 +2,8 @@ import React from 'react';
 import '../../App.css';
 import {Route} from 'react-router-dom';
 import ProfileContainer from "../Profile/ProfileContainer";
-import DialogsContainer from "../Dialogs/DialogsContainer";
+import DialogsContainer from "../DialogsPage/DialogsContainer";
+import {UsersContainer} from "../Users/UsersContainer";
 
 
 const ContentBody = () => {
@@ -11,6 +12,7 @@ const ContentBody = () => {
         <div className="ContentBody">
             <Route path='/dialogs' render={() => (<DialogsContainer/>)}/>
             <Route path='/profile' render={() => (<ProfileContainer/>)}/>
+            <Route path='/users' render={() => (<UsersContainer/>)}/>
         </div>
     );
 }

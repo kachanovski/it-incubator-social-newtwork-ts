@@ -9,11 +9,14 @@ const ProfileInfo = () => {
             <div className={s.profileInfoAvatar}>
 
             </div>
-            <div >
-               name Soname
+            <div>
+                name Soname
             </div>
-            <div >
-                Gallery
+            <div className={s.gallery}>
+                <div className={s.galleryItem}>1</div>
+                <div className={s.galleryItem}>2</div>
+                <div className={s.galleryItem}> 3</div>
+                <div className={s.galleryItem}>4</div>
             </div>
 
 

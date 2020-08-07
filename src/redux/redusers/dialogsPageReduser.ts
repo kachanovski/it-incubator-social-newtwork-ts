@@ -8,24 +8,23 @@ const CHANGE_MESSAGE_VALUE = "CHANGE_MESSAGE_VALUE"
 
 
 let initialState: dialogPageType = {
-    messages: [
-        {id: 1, message: 'first'},
-        {id: 2, message: 'start'},
-    ],
+    messages: [ ],
     newMessage: ""
 }
+let newDate = new Date()
+
 
 export const dialogsReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            debugger
             const newMessage: messageType = {
                 id: 4,
                 message: state.newMessage,
+                date: newDate.toLocaleTimeString()
             }
             return {
                 ...state,
-                messages: [newMessage,...state.messages],
+                messages: [newMessage, ...state.messages],
                 newMessage: ""
             }
         case CHANGE_MESSAGE_VALUE:

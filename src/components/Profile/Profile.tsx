@@ -21,25 +21,24 @@ const Profile = (props: ProfileProps) => {
         <div className={s.profile}>
             <div>
                 <div className={s.description}>
-                    description
+                    <img
+                        src="https://co12.nevseoboi.com.ua/wallpapers/panoramic/1347913289-644041-0143603_www.nevseoboi.com.ua.jpg"/>
                 </div>
-                <div className={s.addForm}>
-                    <input type={'text'}
-                           value={props.profilePage.newText}
-                           onChange={changeNewTextValue}/>
+                <div className={s.postsBox}>
+                    <div className={s.addForm}>
+                        <input type={'text'}
+                               value={props.profilePage.newText}
+                               onChange={changeNewTextValue}/>
+                        <button className={s.buttonAddPost} onClick={addPost}>Add Post</button>
+                    </div>
 
-                    <button className={s.buttonAddPost} onClick={addPost}>Add Post</button>
+                    <Posts posts={props.profilePage.posts}/>
                 </div>
-
-                <Posts posts={props.profilePage.posts}/>
             </div>
 
             <div className={s.profileBar}>
                 <ProfileInfo/>
-                <div>
-                    Profile Info
-                </div>
-
+                Profile Info
             </div>
         </div>
     );

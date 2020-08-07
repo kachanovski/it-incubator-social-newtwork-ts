@@ -1,5 +1,5 @@
 import {connect, ConnectedProps} from "react-redux";
-import Dialogs from "./Dialogs";
+import DialogsPage from "./DialogsPage";
 import {StoreReduxType} from "../../redux/store";
 import {Dispatch} from 'redux';
 import {AddMessageAC, ChangeMessageValueAC} from '../../redux/redusers/dialogsPageReduser';
@@ -26,6 +26,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsPage)
 
 export default DialogsContainer;

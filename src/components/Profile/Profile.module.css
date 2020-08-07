@@ -1,30 +1,51 @@
-.profile{
+.profile {
     display: grid;
-    grid-template-columns: 3fr 1fr;
     height: 100vh;
-}
-.profileBar{
-    background-color: slateblue;
-    height: 100vh;
+    width: 1530px;
+    grid-template-columns: 5fr 3fr;
+    background-color: #e4dbd9;
 }
 
+.profileBar {
+    right: 0;
+    width: 350px;
+    /*background-color: #6e93d6;*/
+    height: 100vh;
+    position: absolute;
+}
 
-.description{
+.description {
     height: 40vh;
+    width: 1530px;
     background-color: green;
 }
 
-.addForm{
+.description img {
+    height: 40vh;
+    width: 1530px;
+}
+
+
+.postsBox {
+    position: absolute;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
-input[type=text]:focus {
-    background-color: lightblue;
+
+.addForm {
+    display: flex;
+    align-content: space-between;
+    width: 100%;
+    padding-left: 50px;
 }
+
+
 input[type=text] {
     font-size: 25px;
     width: 80%;
+    height: 40%;
     border-radius: 5px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -32,14 +53,17 @@ input[type=text] {
 }
 
 
-.buttonAddPost{
-    background-color: #4CAF50; /* Green */
+.buttonAddPost {
+    background-color: slateblue;
     border: none;
     color: white;
-    padding: 19px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
+    font-size: 17px;
+    border-radius: 7px;
+    margin: 10px;
+    height: 50px;
+    width: 10%;
 }
+

@@ -2,16 +2,16 @@
     text-align: center;
     grid-area: n;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: #2f4c58;
 }
 
-.navTab{
+.navTab {
     text-decoration: none;
     color: white;
-font-size: 30px;
+    font-size: 30px;
 }
 
-.navTab.active{
-    color: slateblue ;
+.navTab.active {
+    color: slateblue;
 }
 

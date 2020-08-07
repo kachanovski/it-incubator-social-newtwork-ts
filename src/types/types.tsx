@@ -14,6 +14,7 @@ type dialogsType = {
 }
 
 export type messageType = {
+    date: any
     id: number
     message: string
 }
@@ -28,6 +29,14 @@ export type postsType = {
     likesCount: number
 }
 
+export type UsersType = {
+    users: Array<UserType>
+}
 
-export type AddPostType = (newPostText: string) => void
-export type changePostValueType = (newText: string) => void
+export type UserType = {
+    id: number
+    name: string
+    status: string | null
+    photos: object | null
+    folowed: boolean
+}
