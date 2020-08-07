@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect, ConnectedProps} from 'react-redux';
-import Users from './Users';
 import {Dispatch} from "redux";
 import {StoreReduxType} from "../../redux/store";
 import {followAc, setUsersAC, unfollowAc} from "../../redux/redusers/usersReduser";
+import Users from './Users';
 
 let mapStateToProps = (state: StoreReduxType) => {
     return {
