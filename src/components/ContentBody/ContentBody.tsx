@@ -3,7 +3,7 @@ import '../../App.css';
 import {Route} from 'react-router-dom';
 import ProfileContainer from "../Profile/ProfileContainer";
 import DialogsContainer from "../DialogsPage/DialogsContainer";
-import {UsersContainer} from "../Users/UsersContainer";
+import UsersContainer from '../Users/UsersContainer';
 
 
 const ContentBody = () => {

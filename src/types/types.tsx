@@ -31,12 +31,20 @@ export type postsType = {
 
 export type UsersType = {
     users: Array<UserType>
+    count: number
+    page: number
+    totalCount: number
+}
+
+type PhotosType = {
+    small: string
+    large: string
 }
 
 export type UserType = {
     id: number
     name: string
     status: string | null
-    photos: object | null
-    folowed: boolean
+    photos: PhotosType
+    followed: boolean
 }

@@ -4,15 +4,24 @@ import {UsersType} from "../../types/types"
 export type ActionsType =
     ReturnType<typeof followAc> |
     ReturnType<typeof unfollowAc> |
-    ReturnType<typeof setUsersAC>
+    ReturnType<typeof setUsersAC> |
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setTotalCountAC>
+
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
+const SET_TOTAL_COUNT = "SET_TOTAL_COUNT"
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 
 
 let initialState: UsersType = {
-    users: []
+    users: [],
+    count: 5,
+    page: 1,
+    totalCount:10
+
 }
 
 export const usersReducer = (state = initialState, action: ActionsType) => {
@@ -40,8 +49,18 @@ export const usersReducer = (state = initialState, action: ActionsType) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
-            }
+                users: [...action.users]
+            };
+        case SET_TOTAL_COUNT:
+            return  {
+                ...state,
+                totalCount: action.totalCount
+            };
+ case SET_CURRENT_PAGE:
+            return  {
+                ...state,
+                page: action.page
+            };
 
     }
     return state
@@ -62,6 +81,18 @@ export const setUsersAC = (users:any) => {
     return {
         type: "SET_USERS",
         users: users
+    } as const
+}
+export const setTotalCountAC = (totalCount:number) => {
+    return {
+        type: "SET_TOTAL_COUNT",
+        totalCount: totalCount
+    } as const
+}
+export const setCurrentPageAC = (page:number) => {
+    return {
+        type: "SET_CURRENT_PAGE",
+        page: page
     } as const
 }
 
