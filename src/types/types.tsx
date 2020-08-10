@@ -22,6 +22,7 @@ export type messageType = {
 export type profilePageType = {
     newText: string
     posts: Array<postsType>
+    profile: any
 }
 export type postsType = {
     id: number
@@ -31,9 +32,10 @@ export type postsType = {
 
 export type UsersType = {
     users: Array<UserType>
-    count: number
-    page: number
+    pageSize: number
+    currentPage: number
     totalCount: number
+    isFetching: boolean
 }
 
 type PhotosType = {

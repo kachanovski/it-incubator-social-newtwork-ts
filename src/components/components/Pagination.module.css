@@ -1,0 +1,17 @@
+.pagination {
+
+    text-align: center;
+    margin: 0 4px;
+}
+
+.currentPage {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pages {
+    display: inline-block;
+    color: black;
+    padding: 8px 16px;
+    border: 1px;
+}

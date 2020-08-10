@@ -2,3 +2,37 @@
     padding: 20px;
 
 }
+
+.buttonAddPost {
+    background-color: slateblue;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    border-radius: 7px;
+    margin: 10px;
+    height: 50px;
+    width: 10%;
+}
+
+.addForm {
+    display: flex;
+    align-content: space-between;
+    width: 100%;
+    padding-left: 50px;
+}
+
+
+input[type=text] {
+    font-size: 25px;
+    width: 80%;
+    height: 40%;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
