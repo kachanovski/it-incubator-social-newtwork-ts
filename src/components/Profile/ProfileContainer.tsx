@@ -9,13 +9,16 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 
 type ProfileProps = PropsFromRedux
 type SomeComponentProps = RouteComponentProps;
-type RoyteType = {
-    userId: string
+type RouteType = {
+    userId: number
 }
 class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps> {
 
     componentDidMount() {
-        let userId = (this.props.match.params as RoyteType).userId
+        let userId = (this.props.match.params as RouteType).userId
+        if(!userId) {
+            userId = 2
+        }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data)

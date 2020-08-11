@@ -1,16 +1,6 @@
-export type rootStateType = {
-    profilePage: profilePageType
-    dialogPage: dialogPageType
-}
-
-
 export type dialogPageType = {
     messages: Array<messageType>
     newMessage: string
-}
-type dialogsType = {
-    id: number
-    name: string
 }
 
 export type messageType = {
@@ -49,4 +39,17 @@ export type UserType = {
     status: string | null
     photos: PhotosType
     followed: boolean
+}
+
+export type AuthType = {
+    id: null | number
+    email: null | string
+    login: null | string
+    isAuth: boolean
+}
+
+export type AuthDataType = {
+    id: null | number
+    email: null | string
+    login: null | string
 }
