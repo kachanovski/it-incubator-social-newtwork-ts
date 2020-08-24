@@ -1,32 +1,68 @@
 import React from 'react';
 import {connect, ConnectedProps} from 'react-redux';
-import Users from './Users';
-import {Dispatch} from "redux";
 import {StoreReduxType} from "../../redux/store";
-import {followAc, setUsersAC, unfollowAc} from "../../redux/redusers/usersReduser";
+import {
+    followSuccess,
+    getUsers,
+    setCurrentPage,
+    setIsFetching,
+    setTotalCount,
+    unfollowSuccess
+} from "../../redux/redusers/usersReduser";
+import Users from './Users';
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/authRedirect";
+
+type UsersProps = PropsFromRedux
+
+class UsersContainer extends React.Component<UsersProps> {
+
+    componentDidMount() {
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+    }
+
+    onPageChanged = (currentPage: number) => {
+        this.props.setCurrentPage(currentPage)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+    }
+
+    render() {
+
+
+        return (
+            <Users users={this.props.users}
+                   pageSize={this.props.pageSize}
+                   totalCount={this.props.totalCount}
+                   onPageChanged={this.onPageChanged}
+                   isFetching={this.props.isFetching}
+                   followSuccess={this.props.followSuccess}
+                   unfollowSuccess={this.props.unfollowSuccess}
+                   followInProgress={this.props.followInProgress}
+                   currentPage={this.props.currentPage}/>
+        );
+    }
+}
 
 let mapStateToProps = (state: StoreReduxType) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        totalCount: state.usersPage.totalCount,
+        currentPage: state.usersPage.currentPage,
+        pageSize: state.usersPage.pageSize,
+        isFetching: state.usersPage.isFetching,
+        followInProgress: state.usersPage.followInProgress
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAc(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAc(userId))
-        },
-        setUsers: (users: any) => {
-            dispatch(setUsersAC(users))
-        }
-    }
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, {
+    setTotalCount, setCurrentPage, setIsFetching, getUsers, followSuccess,
+    unfollowSuccess
+})  //?????
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+
+export default compose<React.ComponentType>(
+    connector,
+    withAuthRedirect
+)(UsersContainer)

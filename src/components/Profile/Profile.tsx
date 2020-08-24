@@ -1,20 +1,30 @@
-import React, {ChangeEvent} from 'react';
-import '../../App.css';
-import Posts from './Posts/Posts';
-import {PropsFromRedux} from "./ProfileContainer";
+import React, {ChangeEvent, useState} from 'react';
 import s from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PostsContainer from "./Posts/PostsContainer";
 
-type ProfileProps = PropsFromRedux
+type ProfileProps = {}
 
 
-const Profile = (props: ProfileProps) => {
+const Profile = (props: any) => {
+debugger
+    let [editMode, setEditMode] = useState(false)
+    let [statusValue, setStatusValue] = useState(props.status)
 
-    let addPost = () => {
-        props.addPost(props.profilePage.newText)
+    let activateEditMode = () => {
+        setEditMode(true)
     }
-    let changeNewTextValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeNewTextValue(e.currentTarget.value)
+    let deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateStatus(statusValue)
+    }
+    let onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
+        setStatusValue(e.currentTarget.value)
+    }
+
+
+    if (!props.profile) {
+        return <h3>Loading ....</h3>
     }
 
     return (
@@ -24,15 +34,21 @@ const Profile = (props: ProfileProps) => {
                     <img
                         src="https://co12.nevseoboi.com.ua/wallpapers/panoramic/1347913289-644041-0143603_www.nevseoboi.com.ua.jpg"/>
                 </div>
-                <div className={s.postsBox}>
-                    <div className={s.addForm}>
-                        <input type={'text'}
-                               value={props.profilePage.newText}
-                               onChange={changeNewTextValue}/>
-                        <button className={s.buttonAddPost} onClick={addPost}>Add Post</button>
+                <div>
+                    {props.profile.fullName}
+
+                    <h2> status</h2>
+                    <div>
+                        {editMode
+                            ? <input value={statusValue} onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus/>
+                            : <span onClick={activateEditMode}> {statusValue}</span>
+                        }
                     </div>
 
-                    <Posts posts={props.profilePage.posts}/>
+
+                </div>
+                <div className={s.postsBox}>
+                    <PostsContainer/>
                 </div>
             </div>
 

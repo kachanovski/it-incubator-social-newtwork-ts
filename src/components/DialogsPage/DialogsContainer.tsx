@@ -1,20 +1,11 @@
 import {connect, ConnectedProps} from "react-redux";
 import DialogsPage from "./DialogsPage";
 import {StoreReduxType} from "../../redux/store";
-import {Dispatch} from 'redux';
-import {AddMessageAC, ChangeMessageValueAC} from '../../redux/redusers/dialogsPageReduser';
+import {compose} from 'redux';
+import {addMessage, changeMessageTextValue} from '../../redux/redusers/dialogsPageReduser';
+import React from "react";
+import {withAuthRedirect} from "../../hoc/authRedirect";
 
-
-let mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        addMessage: (newMessage: string) => {
-            dispatch(AddMessageAC(newMessage))
-        },
-        changeMessageTextValue: (newMessage: string) => {
-            dispatch(ChangeMessageValueAC(newMessage))
-        }
-    }
-}
 
 let mapStateToProps = (state: StoreReduxType) => {
     return {
@@ -22,10 +13,11 @@ let mapStateToProps = (state: StoreReduxType) => {
     }
 }
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, {addMessage,changeMessageTextValue })
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsPage)
-
-export default DialogsContainer;
+export default compose<React.ComponentType>(
+    connector,
+    withAuthRedirect
+)(DialogsPage)

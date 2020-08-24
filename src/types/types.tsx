@@ -1,18 +1,7 @@
-export type rootStateType = {
-    profilePage: profilePageType
-    dialogPage: dialogPageType
-}
-
-
 export type dialogPageType = {
     messages: Array<messageType>
     newMessage: string
 }
-type dialogsType = {
-    id: number
-    name: string
-}
-
 export type messageType = {
     date: any
     id: number
@@ -22,6 +11,8 @@ export type messageType = {
 export type profilePageType = {
     newText: string
     posts: Array<postsType>
+    profile: any
+    status: string
 }
 export type postsType = {
     id: number
@@ -29,14 +20,32 @@ export type postsType = {
     likesCount: number
 }
 
+
+
 export type UsersType = {
     users: Array<UserType>
+    pageSize: number
+    currentPage: number
+    totalCount: number
+    isFetching: boolean
+    followInProgress: Array<number>   // ????
 }
-
 export type UserType = {
     id: number
     name: string
     status: string | null
-    photos: object | null
-    folowed: boolean
+    photos: PhotosType
+    followed: boolean
+}
+type PhotosType = {
+    small: string
+    large: string
+}
+
+
+export type AuthType = {
+    id?: null | number
+    email?: null | string
+    login?: null | string
+    isAuth?: boolean
 }

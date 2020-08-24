@@ -1,7 +1,7 @@
 import {dialogPageType, messageType} from "../../types/types";
 
 
-export type ActionsType = ReturnType<typeof AddMessageAC> | ReturnType<typeof ChangeMessageValueAC>
+export type ActionsType = ReturnType<typeof addMessage> | ReturnType<typeof changeMessageTextValue>
 
 const ADD_MESSAGE = "ADD_MESSAGE"
 const CHANGE_MESSAGE_VALUE = "CHANGE_MESSAGE_VALUE"
@@ -36,13 +36,13 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
     return state
 }
 
-export const AddMessageAC = (newMessage: string) => {
+export const addMessage = (newMessage: string) => {
     return {
         type: "ADD_MESSAGE",
         newMessage: newMessage
     } as const
 }
-export const ChangeMessageValueAC = (newMessage: string) => {
+export const changeMessageTextValue = (newMessage: string) => {
     return {
         type: "CHANGE_MESSAGE_VALUE",
         newMessage: newMessage

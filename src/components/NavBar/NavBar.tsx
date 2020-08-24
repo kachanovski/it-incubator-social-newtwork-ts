@@ -2,6 +2,7 @@ import React from 'react';
 import '../../App.css';
 import {NavLink} from 'react-router-dom';
 import s from './NavBar.module.css'
+import AuthContainer from "../Auth/AuthContainer";
 
 const NavBar = () => {
     return (
@@ -24,6 +25,8 @@ const NavBar = () => {
             <div>
                 <NavLink className={s.navTab} activeClassName={s.active} to='/users'>Users</NavLink>
             </div>
+
+            <AuthContainer />
         </div>
     );
 }

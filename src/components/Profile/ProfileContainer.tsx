@@ -1,30 +1,54 @@
-import {AddPostAC, ChangePostValueAC} from '../../redux/redusers/profilePageReduser';
+import React from "react";
 import Profile from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
-import {Dispatch} from "redux";
 import {StoreReduxType} from "../../redux/store";
+import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/redusers/profilePageReduser";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/authRedirect";
+import {compose} from "redux";
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        addPost: (newText: string) => {
-            dispatch(AddPostAC(newText))
-        },
-        changeNewTextValue: (newText: string) => {
-            dispatch(ChangePostValueAC(newText))
+type ProfileProps = PropsFromRedux
+type SomeComponentProps = RouteComponentProps;
+type RouteType = {
+    userId: number
+}
+
+class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps> {
+
+    componentDidMount() {
+        let userId = (this.props.match.params as RouteType).userId
+        if (!userId) {
+            userId = 6591
         }
+        this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
+    }
+
+
+    render() {
+        return (
+            <Profile profile={this.props.profile}
+                     updateStatus={this.props.updateUserStatus}
+                     status={this.props.status}/>
+        )
     }
 }
+
+
 let mapStateToProps = (state: StoreReduxType) => {
     return {
-        profilePage: state.profilePage,
+        profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 }
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
+const connector = connect(mapStateToProps, {getUserProfile, getUserStatus,updateUserStatus})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
-
-export default ProfileContainer;
+export default compose<React.ComponentType>(   // ?????
+    withRouter,
+    connector,
+    withAuthRedirect
+)(ProfileContainer)
