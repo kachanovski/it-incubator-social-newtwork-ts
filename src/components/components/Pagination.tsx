@@ -59,8 +59,6 @@ const Pagination = (props: PaginationProps) => {
                       </span>
                 : ''
             }
-
-
         </div>
     )
 }

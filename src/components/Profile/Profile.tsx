@@ -4,10 +4,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
 import ProfileStatus from "./ProfileStatus";
 
-type ProfileProps = {}
+type ProfileProps = {
+    profile: any
+    status: string
+    updateStatus: (status: string) => void
+}
 
 
-const Profile = (props: any) => {
+const Profile = (props: ProfileProps) => {
 
     if (!props.profile) {
         return <h3>Loading ....</h3>

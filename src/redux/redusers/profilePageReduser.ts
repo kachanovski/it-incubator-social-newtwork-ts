@@ -56,6 +56,7 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
                 status: action.status
             }
    case UPDATE_USER_STATUS:
+       debugger
             return {
                 ...state,
                 status: action.status
@@ -114,11 +115,11 @@ export const getUserStatus = (userId: number) => {
 }
 export const updateUserStatus = (status: string) => {
     return (dispatch: Dispatch) => {
-        debugger
         profileAPI.updateStatus(status)
             .then(data => {
+                debugger
                 if(data.resultCode === 0) {
-                    dispatch(updateStatus(data))
+                    dispatch(updateStatus(status))
                 }
             })
     }
