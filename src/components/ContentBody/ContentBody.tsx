@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import DialogsContainer from "../DialogsPage/DialogsContainer";
 import UsersContainer from '../Users/UsersContainer';
 import ProfileContainer from "../Profile/ProfileContainer";
-import LoginPage from "../LoginPage";
+import LoginPage from '../Login/LoginPage';
 
 
 const ContentBody = () => {
