@@ -24,7 +24,7 @@ let initialState: profilePageType = {
     ],
     newText: "",
     profile: '',
-    status: "pitausb ne zastrlitcia"
+    status: ""
 }
 
 export const profileReducer = (state = initialState, action: ActionsType) => {
@@ -114,6 +114,7 @@ export const getUserStatus = (userId: number) => {
 }
 export const updateUserStatus = (status: string) => {
     return (dispatch: Dispatch) => {
+        debugger
         profileAPI.updateStatus(status)
             .then(data => {
                 if(data.resultCode === 0) {

@@ -10,7 +10,6 @@ import LoginPage from "../LoginPage";
 
 const ContentBody = () => {
     return (
-
         <div className="ContentBody">
             <Route path='/dialogs' render={() => (<DialogsContainer/>)}/>
             <Route path='/profile/:userId?' render={() => (<ProfileContainer />)}/>

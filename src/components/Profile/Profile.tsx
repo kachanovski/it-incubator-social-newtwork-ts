@@ -1,27 +1,13 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import s from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileProps = {}
 
 
 const Profile = (props: any) => {
-debugger
-    let [editMode, setEditMode] = useState(false)
-    let [statusValue, setStatusValue] = useState(props.status)
-
-    let activateEditMode = () => {
-        setEditMode(true)
-    }
-    let deactivateEditMode = () => {
-        setEditMode(false)
-        props.updateStatus(statusValue)
-    }
-    let onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
-        setStatusValue(e.currentTarget.value)
-    }
-
 
     if (!props.profile) {
         return <h3>Loading ....</h3>
@@ -38,12 +24,7 @@ debugger
                     {props.profile.fullName}
 
                     <h2> status</h2>
-                    <div>
-                        {editMode
-                            ? <input value={statusValue} onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus/>
-                            : <span onClick={activateEditMode}> {statusValue}</span>
-                        }
-                    </div>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 
 
                 </div>
@@ -61,3 +42,4 @@ debugger
 }
 
 export default Profile;
+
