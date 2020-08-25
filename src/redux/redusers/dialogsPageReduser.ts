@@ -1,15 +1,13 @@
 import {dialogPageType, messageType} from "../../types/types";
 
 
-export type ActionsType = ReturnType<typeof addMessage> | ReturnType<typeof changeMessageTextValue>
+export type ActionsType = ReturnType<typeof addMessage>
 
 const ADD_MESSAGE = "ADD_MESSAGE"
-const CHANGE_MESSAGE_VALUE = "CHANGE_MESSAGE_VALUE"
 
 
 let initialState: dialogPageType = {
     messages: [ ],
-    newMessage: ""
 }
 let newDate = new Date()
 
@@ -19,33 +17,22 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
         case ADD_MESSAGE:
             const newMessage: messageType = {
                 id: 4,
-                message: state.newMessage,
+                message: action.addNewMessage,
                 date: newDate.toLocaleTimeString()
             }
             return {
                 ...state,
                 messages: [newMessage, ...state.messages],
-                newMessage: ""
-            }
-        case CHANGE_MESSAGE_VALUE:
-            return {
-                ...state,
-                newMessage: action.newMessage
             }
     }
     return state
 }
 
-export const addMessage = (newMessage: string) => {
+export const addMessage = (addNewMessage: string) => {
     return {
         type: "ADD_MESSAGE",
-        newMessage: newMessage
+        addNewMessage
     } as const
 }
-export const changeMessageTextValue = (newMessage: string) => {
-    return {
-        type: "CHANGE_MESSAGE_VALUE",
-        newMessage: newMessage
-    } as const
-}
+
 

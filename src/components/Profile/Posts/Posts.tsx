@@ -1,29 +1,23 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import Post from "./Post/Post";
 import s from './Posts.module.css'
 import {PropsFromRedux} from './PostsContainer';
+import {AddPostFormRedux} from './AddPostsForm';
 
 
 const Posts = (props: PropsFromRedux) => {
 
-    let addPost = () => {
-        props.addPost(props.newText)
+    let onSubmit = (value: any) => {
+        props.addPost(value.addPostValue)
     }
-    let changeNewTextValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeNewTextValue(e.currentTarget.value)
-    }
-
 
     let postsElemets = props.posts.map(posts => <Post key={posts.id}
-                                                                  posts={posts}
+                                                      posts={posts}
     />)
     return (
         <div className={s.posts}>
             <div className={s.addForm}>
-                <input type={'text'}
-                       value={props.newText}
-                       onChange={changeNewTextValue}/>
-                <button className={s.buttonAddPost} onClick={addPost}>Add Post</button>
+                <AddPostFormRedux onSubmit={onSubmit}/>
             </div>
 
             <div>

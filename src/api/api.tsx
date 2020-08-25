@@ -14,7 +14,7 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
     },
     followUser(userId: number) {
-        return instance.post(`follow/${userId}`,).then(response => {
+        return instance.post(`follow/${userId}`).then(response => {
             if (response.data.resultCode === 0) {}} )
     },
     unfollowUser(userId: number) {
@@ -39,6 +39,12 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status/` , {status}).then(response => response.data)
+    }
+}
+
+export const loginAPI = {
+    login() {
+        return instance.post( `auth/login`). then(response => response.data)
     }
 }
 

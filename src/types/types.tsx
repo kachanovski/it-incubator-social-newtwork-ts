@@ -1,6 +1,5 @@
 export type dialogPageType = {
     messages: Array<messageType>
-    newMessage: string
 }
 export type messageType = {
     date: any
@@ -9,7 +8,6 @@ export type messageType = {
 }
 
 export type profilePageType = {
-    newText: string
     posts: Array<postsType>
     profile: any
     status: string

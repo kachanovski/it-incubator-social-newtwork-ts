@@ -1,20 +1,20 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './DialogsPage.module.css';
 import {PropsFromRedux} from "./DialogsContainer";
 import Dialogs from './Dialogs/Dialogs';
+import {AddMessageFormRedux} from "./DialogsPageForm";
 
 type DialogsProps = PropsFromRedux
 
 const DialogsPage = (props: DialogsProps) => {
 
-    let addMessage = () => {
-        props.addMessage(props.dialogPage.newMessage)
-    }
-    let changeMessageTextValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeMessageTextValue(e.currentTarget.value)
+    const onSubmit = (value: any) => {
+        props.addMessage(value.addNewMessage)
     }
 
-    let messages = props.dialogPage.messages.map(m =><div> <span>{m.date}</span> <div className={s.messageBox} key={m.id}>{m.message}</div> </div> )
+    let messages = props.dialogPage.messages.map(m => <div><span>{m.date}</span>
+        <div className={s.messageBox} key={m.id}>{m.message}</div>
+    </div>)
 
 
     return (
@@ -25,8 +25,7 @@ const DialogsPage = (props: DialogsProps) => {
                 {messages}
             </div>
             <div className={s.addMessage}>
-                <input type={'text'} value={props.dialogPage.newMessage} onChange={changeMessageTextValue}/>
-                <button onClick={addMessage}>add</button>
+                <AddMessageFormRedux onSubmit={onSubmit}/>
             </div>
         </div>
     );

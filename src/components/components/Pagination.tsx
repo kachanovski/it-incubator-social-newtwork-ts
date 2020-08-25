@@ -44,8 +44,8 @@ const Pagination = (props: PaginationProps) => {
                 : ''}
 
             {pages.map(p => {
-                return <span className={s.pages}>
-                        <span className={props.currentPage === p ? s.currentPage : ''} onClick={() => {
+                return <span key={p}  className={s.pages}>
+                        <span key={p} className={props.currentPage === p ? s.currentPage : ''} onClick={() => {
                             props.onPageChanged(p)
                         }}>
                             {changedPage(p)}

@@ -4,14 +4,12 @@ import {profileAPI} from "../../api/api";
 
 
 export type ActionsType =
-    ReturnType<typeof AddPostAC> |
+    ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> |
     ReturnType<typeof setUserStatus> |
-    ReturnType<typeof updateStatus> |
-    ReturnType<typeof ChangePostValueAC>
+    ReturnType<typeof updateStatus>
 
 const ADD_POST = "ADD_POST"
-const CHANGE_POST_VALUE = "CHANGE_POST_VALUE"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_USER_STATUS = "SET_USER_STATUS"
 const UPDATE_USER_STATUS = "UPDATE_USER_STATUS"
@@ -22,7 +20,6 @@ let initialState: profilePageType = {
         {id: 1, textPost: 'first', likesCount: 23},
         {id: 2, textPost: 'start', likesCount: 12},
     ],
-    newText: "",
     profile: '',
     status: ""
 }
@@ -32,18 +29,12 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
         case ADD_POST:
             const newPost: postsType = {
                 id: 3,
-                textPost: state.newText,
+                textPost: action.addPostValue,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newText: ""
-            }
-        case CHANGE_POST_VALUE:
-            return {
-                ...state,
-                newText: action.newText
             }
         case SET_USER_PROFILE:
             return {
@@ -56,7 +47,6 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
                 status: action.status
             }
    case UPDATE_USER_STATUS:
-       debugger
             return {
                 ...state,
                 status: action.status
@@ -65,16 +55,10 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
     return state
 }
 
-export const AddPostAC = (newText: string) => {
+export const addPost = (addPostValue: string) => {
     return {
         type: "ADD_POST",
-        newText
-    } as const
-}
-export const ChangePostValueAC = (newText: string) => {
-    return {
-        type: "CHANGE_POST_VALUE",
-        newText
+        addPostValue
     } as const
 }
 export const setUserProfile = (profile: any) => {
@@ -117,7 +101,6 @@ export const updateUserStatus = (status: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(status)
             .then(data => {
-                debugger
                 if(data.resultCode === 0) {
                     dispatch(updateStatus(status))
                 }
