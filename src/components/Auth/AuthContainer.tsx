@@ -2,7 +2,7 @@ import React from 'react';
 import {connect, ConnectedProps} from "react-redux";
 import Auth from "./Auth";
 import {StoreReduxType} from "../../redux/store";
-import {authMe, setUserAuth} from "../../redux/redusers/authReduser";
+import {authMe, logout, setUserAuth} from "../../redux/redusers/authReduser";
 import {compose} from "redux";
 
 type AuthProps = PropsFromRedux
@@ -16,6 +16,7 @@ class AuthContainer extends React.Component<AuthProps> {
     render() {
         return (
             <Auth login={this.props.login}
+                  logout={this.props.logout}
                   isAuth={this.props.isAuth}/>
         );
     }
@@ -29,7 +30,7 @@ let mapStateToProps = (state: StoreReduxType) => {
 }
 
 
-const connector = connect(mapStateToProps, {setUserAuth, authMe})
+const connector = connect(mapStateToProps, {setUserAuth, authMe, logout})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 

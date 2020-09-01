@@ -46,4 +46,5 @@ export type AuthType = {
     email?: null | string
     login?: null | string
     isAuth?: boolean
+    logout?: () => void
 }

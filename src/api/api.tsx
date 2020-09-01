@@ -28,7 +28,15 @@ export const usersAPI = {
 export const authAPI = {
     authMe() {
         return instance.get(`auth/me`,).then(response => response.data)
+    },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post( `auth/login`, {email, password, rememberMe}). then(response => response.data)
+    },
+    logout() {
+        return instance.delete( `auth/login`,). then(response => response.data)
     }
+
+
 }
 export const profileAPI = {
     getUserProfile(userId: number) {
@@ -39,12 +47,6 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status/` , {status}).then(response => response.data)
-    }
-}
-
-export const loginAPI = {
-    login() {
-        return instance.post( `auth/login`). then(response => response.data)
     }
 }
 
