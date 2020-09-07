@@ -16,9 +16,9 @@ type RouteType = {
 class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps> {
 
     componentDidMount() {
-        let userId = (this.props.match.params as RouteType).userId
+        let userId: any = (this.props.match.params as RouteType).userId    ///типизация??
         if (!userId) {
-            userId = 6591
+            userId = this.props.myUserId
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -38,7 +38,9 @@ class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps
 let mapStateToProps = (state: StoreReduxType) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        myUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 
