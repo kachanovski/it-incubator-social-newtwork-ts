@@ -19,6 +19,9 @@ class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps
         let userId: any = (this.props.match.params as RouteType).userId    ///типизация??
         if (!userId) {
             userId = this.props.myUserId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -44,7 +47,7 @@ let mapStateToProps = (state: StoreReduxType) => {
     }
 }
 
-const connector = connect(mapStateToProps, {getUserProfile, getUserStatus,updateUserStatus})
+const connector = connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 

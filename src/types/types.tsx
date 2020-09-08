@@ -19,7 +19,6 @@ export type postsType = {
 }
 
 
-
 export type UsersType = {
     users: Array<UserType>
     pageSize: number
@@ -47,4 +46,8 @@ export type AuthType = {
     login?: null | string
     isAuth?: boolean
     logout?: () => void
+}
+
+export type AppType = {
+    initialized?: boolean
 }
