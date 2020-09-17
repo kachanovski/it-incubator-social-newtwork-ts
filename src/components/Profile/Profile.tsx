@@ -8,11 +8,12 @@ type ProfileProps = {
     profile: any
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: () => void
 }
 
 
-const Profile = (props: ProfileProps) => {
-
+const Profile = (props: any) => {
     if (!props.profile) {
         return <h3>Loading ....</h3>
     }
@@ -38,7 +39,7 @@ const Profile = (props: ProfileProps) => {
             </div>
 
             <div className={s.profileBar}>
-                <ProfileInfo/>
+                <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile}/>
                 Profile Info
             </div>
         </div>

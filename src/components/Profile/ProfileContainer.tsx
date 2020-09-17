@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
 import {StoreReduxType} from "../../redux/store";
-import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/redusers/profilePageReduser";
+import {getUserProfile, getUserStatus, updateUserStatus, savePhoto} from "../../redux/redusers/profilePageReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/authRedirect";
 import {compose} from "redux";
@@ -14,9 +14,8 @@ type RouteType = {
 }
 
 class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps> {
-
-    componentDidMount() {
-        let userId: any = (this.props.match.params as RouteType).userId    ///типизация??
+    refreshProfile() {
+        let userId: any = (this.props.match.params as RouteType).userId
         if (!userId) {
             userId = this.props.myUserId
             if (!userId) {
@@ -27,16 +26,26 @@ class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps
         this.props.getUserStatus(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileProps & SomeComponentProps>, prevState: Readonly<{}>, snapshot?: any) {
+        if ((this.props.match.params as RouteType).userId !== (prevProps.match.params as RouteType).userId) {
+            this.refreshProfile()
+        }
+    }
 
     render() {
         return (
             <Profile profile={this.props.profile}
+                     savePhoto={this.props.savePhoto}
+                     isOwner={!(this.props.match.params as RouteType).userId}
                      updateStatus={this.props.updateUserStatus}
                      status={this.props.status}/>
         )
     }
 }
-
 
 let mapStateToProps = (state: StoreReduxType) => {
     return {
@@ -47,7 +56,7 @@ let mapStateToProps = (state: StoreReduxType) => {
     }
 }
 
-const connector = connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus})
+const connector = connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 

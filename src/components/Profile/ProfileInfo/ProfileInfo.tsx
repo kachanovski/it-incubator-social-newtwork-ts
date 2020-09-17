@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
+import userPhoto from '../../../accets/images/user.png'
 
+const ProfileInfo = (props: any) => {
 
-const ProfileInfo = () => {
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
 
     return (
         <div className={s.profileInfo}>
+
             <div className={s.profileInfoAvatar}>
 
             </div>
@@ -19,7 +26,12 @@ const ProfileInfo = () => {
                 <div className={s.galleryItem}>4</div>
             </div>
 
-
+            <div>
+                <img src={props.profile.photos.large || userPhoto}/>
+                {props.isOwner &&
+                <input type={'file'}
+                onChange={onMainPhotoSelected}/>}
+            </div>
         </div>
     );
 }
