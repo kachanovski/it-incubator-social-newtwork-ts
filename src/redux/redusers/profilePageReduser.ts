@@ -7,12 +7,14 @@ export type ActionsType =
     ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> |
     ReturnType<typeof setUserStatus> |
-    ReturnType<typeof updateStatus>
+    ReturnType<typeof updateStatus> |
+    ReturnType<typeof savePhotoSuccess>
 
 const ADD_POST = "ADD_POST"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_USER_STATUS = "SET_USER_STATUS"
 const UPDATE_USER_STATUS = "UPDATE_USER_STATUS"
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
 
 
 let initialState: profilePageType = {
@@ -21,7 +23,7 @@ let initialState: profilePageType = {
         {id: 2, textPost: 'start', likesCount: 12},
     ],
     profile: '',
-    status: ""
+    status: "",
 }
 
 export const profileReducer = (state = initialState, action: ActionsType) => {
@@ -46,10 +48,15 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
                 ...state,
                 status: action.status
             }
-   case UPDATE_USER_STATUS:
+        case UPDATE_USER_STATUS:
             return {
                 ...state,
                 status: action.status
+            }
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photo}
             }
     }
     return state
@@ -79,6 +86,12 @@ export const updateStatus = (status: string) => {
         status
     } as const
 }
+export const savePhotoSuccess = (photo: any) => {
+    return {
+        type: "SAVE_PHOTO_SUCCESS",
+        photo
+    } as const
+}
 
 
 export const getUserProfile = (userId: number) => {
@@ -101,12 +114,33 @@ export const updateUserStatus = (status: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(status)
             .then(data => {
-                if(data.resultCode === 0) {
+                if (data.resultCode === 0) {
                     dispatch(updateStatus(status))
                 }
             })
     }
 }
+export const savePhoto = (photo: any) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.savePhotos(photo)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(savePhotoSuccess(data.data.photos))
+                }
+            })
+    }
+}
+/*
+
+export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
+    debugger
+    let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        debugger
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+*/
 
 
 export default profileReducer

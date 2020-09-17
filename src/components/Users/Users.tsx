@@ -32,7 +32,7 @@ let Users = (props: UsersProps) => {
                     return (
                         <div key={u.id} className={s.user}>
                             <NavLink to={'/profile/' + u.id}>
-                                <img src={u.photos.small !== null ? u.photos.small : userPhoto}/>
+                                <img alt={'user'} src={u.photos.small !== null ? u.photos.small : userPhoto}/>
                             </NavLink>
                             <div>
                                 <div key={u.id} className={s.userName}>{u.name}</div>
