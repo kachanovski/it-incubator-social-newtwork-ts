@@ -22,7 +22,7 @@ const Profile = (props: any) => {
         <div className={s.profile}>
             <div>
                 <div className={s.description}>
-                    <img
+                    <img alt={'description'}
                         src="https://co12.nevseoboi.com.ua/wallpapers/panoramic/1347913289-644041-0143603_www.nevseoboi.com.ua.jpg"/>
                 </div>
                 <div>

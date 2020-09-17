@@ -27,7 +27,7 @@ const ProfileInfo = (props: any) => {
             </div>
 
             <div>
-                <img src={props.profile.photos.large || userPhoto}/>
+                <img alt={'avatar'} src={props.profile.photos.large || userPhoto}/>
                 {props.isOwner &&
                 <input type={'file'}
                 onChange={onMainPhotoSelected}/>}
