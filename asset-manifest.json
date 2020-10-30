@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/social-network/static/css/main.2454c902.chunk.css",
+    "main.js": "/social-network/static/js/main.838bb7ee.chunk.js",
+    "main.js.map": "/social-network/static/js/main.838bb7ee.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.ec619e01.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.ec619e01.js.map",
+    "static/js/2.a2f00008.chunk.js": "/social-network/static/js/2.a2f00008.chunk.js",
+    "static/js/2.a2f00008.chunk.js.map": "/social-network/static/js/2.a2f00008.chunk.js.map",
+    "index.html": "/social-network/index.html",
+    "precache-manifest.b51929fa1144b58d0ac7e8766e131784.js": "/social-network/precache-manifest.b51929fa1144b58d0ac7e8766e131784.js",
+    "service-worker.js": "/social-network/service-worker.js",
+    "static/css/main.2454c902.chunk.css.map": "/social-network/static/css/main.2454c902.chunk.css.map",
+    "static/js/2.a2f00008.chunk.js.LICENSE.txt": "/social-network/static/js/2.a2f00008.chunk.js.LICENSE.txt",
+    "static/media/LoginPage.module.css": "/social-network/static/media/loginBackground.a2c98060.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ec619e01.js",
+    "static/js/2.a2f00008.chunk.js",
+    "static/css/main.2454c902.chunk.css",
+    "static/js/main.838bb7ee.chunk.js"
+  ]
+}
