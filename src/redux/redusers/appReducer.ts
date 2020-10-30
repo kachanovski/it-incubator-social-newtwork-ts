@@ -5,7 +5,7 @@ import {authMe} from "./authReduser";
 export type ActionsType =
     ReturnType<typeof setInitialized>
 
-const SET_INITIALIZED = "SET_INITIALIZED"
+const SET_INITIALIZED = "APP/SET_INITIALIZED"
 
 let initialState: AppType = {
     initialized: false
@@ -24,7 +24,7 @@ export const appReducer = (state = initialState, action: ActionsType) => {
 
 export const setInitialized = () => {
     return {
-        type: "SET_INITIALIZED",
+        type: "APP/SET_INITIALIZED",
     } as const
 }
 

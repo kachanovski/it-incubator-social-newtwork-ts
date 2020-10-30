@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
 import {StoreReduxType} from "../../redux/store";
-import {getUserProfile, getUserStatus, updateUserStatus, savePhoto} from "../../redux/redusers/profilePageReduser";
+import {getUserProfile, getUserStatus, savePhoto, updateUserStatus,updateProfileInfo} from "../../redux/redusers/profilePageReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/authRedirect";
 import {compose} from "redux";
@@ -42,6 +42,8 @@ class ProfileContainer extends React.Component<ProfileProps & SomeComponentProps
                      savePhoto={this.props.savePhoto}
                      isOwner={!(this.props.match.params as RouteType).userId}
                      updateStatus={this.props.updateUserStatus}
+                     updateProfileInfo={this.props.updateProfileInfo}
+                     getUserProfile={this.props.getUserProfile}
                      status={this.props.status}/>
         )
     }
@@ -56,7 +58,7 @@ let mapStateToProps = (state: StoreReduxType) => {
     }
 }
 
-const connector = connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto})
+const connector = connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto,updateProfileInfo})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 

@@ -11,12 +11,12 @@ type PaginationProps = {
 
 const Pagination = (props: PaginationProps) => {
 
-    let start = props.currentPage - 3
-    let end = props.currentPage + 3
+    let start = props.currentPage
+    let end = props.currentPage + 6
     let pagesCount = Math.ceil(props.totalCount / props.pageSize)
     let pages = []
     for (let i = start; i <= end; i++) {
-        pages.push(i)
+            if(i <= pagesCount) {pages.push(i) }
     }
 
     const changedPage = (currentPage: number) => {
@@ -38,10 +38,10 @@ const Pagination = (props: PaginationProps) => {
 
     return (
         <div className={s.pagination}>
-            {props.currentPage !== 1
-                ? <span> <button onClick={onClickPrevPage}>-</button>
+            {props.currentPage >= 5
+                ? <span > <button onClick={onClickPrevPage}>-</button>
                         <span onClick={buttonStartPage}> {1}... </span> </span>
-                : ''}
+                : null}
 
             {pages.map(p => {
                 return <span key={p}  className={s.pages}>
@@ -52,9 +52,9 @@ const Pagination = (props: PaginationProps) => {
                         </span>
                     </span>
             })}
-            {props.currentPage < pagesCount
+            {props.currentPage <= pagesCount-4
                 ? <span>
-                        <span onClick={buttonLastPage}> ...{pagesCount} </span>
+                        ...<span onClick={buttonLastPage}> {pagesCount} </span>
                         <button onClick={onClickNextPage}>+</button>
                       </span>
                 : ''

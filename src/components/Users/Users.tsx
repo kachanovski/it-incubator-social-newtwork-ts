@@ -2,8 +2,9 @@ import React from 'react';
 import userPhoto from '../../accets/images/user.png'
 import {UserType} from "../../types/types";
 import s from './Users.module.css'
-import Pagination from "../components/Pagination";
+import Pagination from "../components/Paginator/Pagination";
 import {NavLink} from "react-router-dom";
+import Preloader from '../components/Preloader/Preloader';
 
 type UsersProps = {
     isFetching: boolean
@@ -22,7 +23,7 @@ let Users = (props: UsersProps) => {
     return (
         <div className={s.userPage}>
             {props.isFetching
-                ? <h3>Loading ....</h3>
+                ? <Preloader />
                 : <Pagination currentPage={props.currentPage}
                               pageSize={props.pageSize}
                               onPageChanged={props.onPageChanged}

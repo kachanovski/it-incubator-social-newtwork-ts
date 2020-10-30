@@ -6,7 +6,7 @@ import { stopSubmit } from "redux-form";
 export type ActionsType =
     ReturnType<typeof setUserAuth>
 
-const SET_USER_AUTH = "SET_USER_AUTH"
+const SET_USER_AUTH = "LOGIN/SET_USER_AUTH"
 
 let initialState: AuthType = {
     id: null,
@@ -28,7 +28,7 @@ export const authReducer = (state = initialState, action: ActionsType) => {
 
 export const setUserAuth = (id: number | null, login: string | null, email: string | null, isAuth: boolean) => {
     return {
-        type: "SET_USER_AUTH",
+        type: "LOGIN/SET_USER_AUTH",
         payload: {id, login, email, isAuth}
     } as const
 }

@@ -3,13 +3,13 @@ import {dialogPageType, messageType} from "../../types/types";
 
 export type ActionsType = ReturnType<typeof addMessage>
 
-const ADD_MESSAGE = "ADD_MESSAGE"
+const ADD_MESSAGE = "DIALOGS/ADD_MESSAGE"
 
 
-let initialState: dialogPageType = {
-    messages: [ ],
+const initialState: dialogPageType = {
+    messages: [],
 }
-let newDate = new Date()
+const newDate = new Date()
 
 
 export const dialogsReducer = (state = initialState, action: ActionsType) => {
@@ -30,7 +30,7 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
 
 export const addMessage = (addNewMessage: string) => {
     return {
-        type: "ADD_MESSAGE",
+        type: "DIALOGS/ADD_MESSAGE",
         addNewMessage
     } as const
 }

@@ -4,6 +4,18 @@ import {connect} from "react-redux";
 import {login, logout} from "../../redux/redusers/authReduser";
 import {Redirect} from "react-router-dom";
 import {StoreReduxType} from "../../redux/store";
+import s from './LoginPage.module.css'
+
+type LoginPropsType = {
+    login: any
+    isAuth: boolean
+}   //?????
+
+type loginForm = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 
 const LoginPage = (props: any) => {
 
@@ -16,10 +28,16 @@ const LoginPage = (props: any) => {
     }
 
     return (
-        <div>
-            <h3>LOGIN</h3>
-            <LoginForm onSubmit={onSubmit}/>
+        <div className={s.loginPage}>
+            <div className={s.loginTitle}>
+
+            </div>
+            <div className={s.loginForm}>
+                <LoginForm onSubmit={onSubmit}/>
+            </div>
+
         </div>
+
     )
 }
 

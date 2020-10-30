@@ -7,18 +7,14 @@ import {addPost} from "../../../redux/redusers/profilePageReduser";
 let mapStateToProps = (state: StoreReduxType) => {
     return {
         posts: state.profilePage.posts,
+        profile: state.profilePage.profile
     }
 }
-
 
 const connector = connect(mapStateToProps, {addPost})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-/*
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
-*/
-
-export default  compose<React.ComponentType>(
+export default compose<React.ComponentType>(
     connector
 )(Posts)

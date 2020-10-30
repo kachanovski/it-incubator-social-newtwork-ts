@@ -13,10 +13,11 @@ const Posts = (props: PropsFromRedux) => {
 
     let postsElemets = props.posts.map(posts => <Post key={posts.id}
                                                       posts={posts}
+                                                      profile={props.profile}
     />)
     return (
         <div className={s.posts}>
-            <div className={s.addForm}>
+            <div>
                 <AddPostFormRedux onSubmit={onSubmit}/>
             </div>
 

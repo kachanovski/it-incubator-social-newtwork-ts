@@ -13,13 +13,13 @@ export type ActionsType =
     ReturnType<typeof setTotalCount>
 
 
-const FOLLOW = "FOLLOW"
-const UNFOLLOW = "UNFOLLOW"
-const SET_USERS = "SET_USERS"
-const SET_TOTAL_COUNT = "SET_TOTAL_COUNT"
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-const SET_IS_FETCHING = "SET_IS_FETCHING"
-const FOLLOW_PROGRESS = "FOLLOW_PROGRESS"
+const FOLLOW = "USERS/FOLLOW"
+const UNFOLLOW = "USERS/UNFOLLOW"
+const SET_USERS = "USERS/SET_USERS"
+const SET_TOTAL_COUNT = "USERS/SET_TOTAL_COUNT"
+const SET_CURRENT_PAGE = "USERS/SET_CURRENT_PAGE"
+const SET_IS_FETCHING = "USERS/SET_IS_FETCHING"
+const FOLLOW_PROGRESS = "USERS/FOLLOW_PROGRESS"
 
 
 let initialState: UsersType = {
@@ -85,43 +85,43 @@ const usersReducer = (state = initialState, action: ActionsType) => {
 }
 export const follow = (userId: number) => {
     return {
-        type: "FOLLOW",
+        type: "USERS/FOLLOW",
         userId
     } as const
 }
 export const unfollow = (userId: number) => {
     return {
-        type: "UNFOLLOW",
+        type: "USERS/UNFOLLOW",
         userId
     } as const
 }
 export const setUsers = (users: any) => {
     return {
-        type: "SET_USERS",
+        type: "USERS/SET_USERS",
         users
     } as const
 }
 export const setTotalCount = (totalCount: number) => {
     return {
-        type: "SET_TOTAL_COUNT",
+        type: "USERS/SET_TOTAL_COUNT",
         totalCount
     } as const
 }
 export const setCurrentPage = (currentPage: number) => {
     return {
-        type: "SET_CURRENT_PAGE",
+        type: "USERS/SET_CURRENT_PAGE",
         currentPage
     } as const
 }
 export const setIsFetching = (isFetching: boolean) => {
     return {
-        type: "SET_IS_FETCHING",
+        type: "USERS/SET_IS_FETCHING",
         isFetching: isFetching
     } as const
 }
 export const setFollowProgress = (isFetching: boolean, userId: number) => {
     return {
-        type: "FOLLOW_PROGRESS",
+        type: "USERS/FOLLOW_PROGRESS",
         isFetching,
         userId
     } as const
@@ -142,7 +142,6 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 }
 export const followSuccess = (followProgress: boolean, userId: number) => {
     return (dispatch: Dispatch) => {
-        debugger
         dispatch(setFollowProgress(true, userId))
         usersAPI.followUser(userId).then(()=> {
             dispatch(follow(userId))

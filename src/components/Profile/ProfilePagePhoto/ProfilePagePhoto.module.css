@@ -1,0 +1,21 @@
+.ProfilePagePhoto{
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+}
+.profilePageAvatar{
+    height: 350px;
+    width: 250px;
+}
+.profilePageAvatar img {
+    max-width: 450px;
+    max-height: 250px;
+    border-radius: 50%;
+}
+.fullNameProfilePage {
+    font-family: cursive;
+    font-size: 50px;
+}

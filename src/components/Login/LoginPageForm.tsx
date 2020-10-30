@@ -1,6 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
-import {Input, MaxLengthCreator, required} from "../../utils/validators/validators";
+import {MaxLengthCreator, required} from "../../utils/validators/validators";
+import {Input} from "../../utils/forms/InputForm/InputForm";
 
 const maxLength30 = MaxLengthCreator(30)
 

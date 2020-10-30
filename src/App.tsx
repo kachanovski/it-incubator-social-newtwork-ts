@@ -7,6 +7,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import {StoreReduxType} from "./redux/store";
 import {compose} from 'redux';
 import {initializeApp} from "./redux/redusers/appReducer";
+import Preloader from "./components/components/Preloader/Preloader";
 
 type AppProps = PropsFromRedux
 
@@ -18,9 +19,7 @@ class App extends React.Component<AppProps> {
 
     render() {
         if(!this.props.initialized){
-            return <div className="preloader">
-                ...LOADING
-            </div>
+            return <Preloader />
         }
         return (
             <BrowserRouter>
@@ -41,7 +40,6 @@ let mapStateToProps = (state: StoreReduxType) => {
 const connector = connect(mapStateToProps, {initializeApp})
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
-
 
 export default compose<React.ComponentType>(
     connector

@@ -1,28 +1,11 @@
-.profileInfo{
-    grid-area: p;
-    height: 40vh;
-    opacity: 70%;
-    width: 350px;
-    justify-content: center;
-
+.profileInfo {
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
-.profileInfoAvatar{
-    margin: auto;
-    height: 150px;
-    width: 150px;
-    background-color: deeppink;
-    border-radius: 50%;
-    z-index: 100000;
-}
-
-
-.gallery {
+.title {
     display: flex;
-    height: 100%;
-   /* background-color: slateblue;*/
-}
-
-.galleryItem{
-    width: 100px;
+    padding: 5px;
+    font-family: cursive;
 }

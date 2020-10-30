@@ -1,47 +1,44 @@
 import React from 'react';
 import s from './Profile.module.css'
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfilePagePhoto from "./ProfilePagePhoto/ProfilePagePhoto";
 import PostsContainer from "./Posts/PostsContainer";
-import ProfileStatus from "./ProfileStatus";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import Preloader from "../components/Preloader/Preloader";
 
 type ProfileProps = {
     profile: any
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
-    savePhoto: () => void
+    savePhoto: (photo: any) => void
+    getUserProfile: (userId: number) => void
+    updateProfileInfo: (profile: any) => void
 }
 
 
-const Profile = (props: any) => {
+const Profile = (props: ProfileProps) => {
     if (!props.profile) {
-        return <h3>Loading ....</h3>
+        return <Preloader/>
     }
 
     return (
         <div className={s.profile}>
-            <div>
+            <div className={s.container1}>
                 <div className={s.description}>
                     <img alt={'description'}
-                        src="https://co12.nevseoboi.com.ua/wallpapers/panoramic/1347913289-644041-0143603_www.nevseoboi.com.ua.jpg"/>
+                         src="https://co12.nevseoboi.com.ua/wallpapers/panoramic/1347913289-644041-0143603_www.nevseoboi.com.ua.jpg"/>
                 </div>
-                <div>
-                    {props.profile.fullName}
-
-                    <h2> status</h2>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-
-
-                </div>
-                <div className={s.postsBox}>
-                    <PostsContainer/>
-                </div>
+                <PostsContainer/>
             </div>
 
-            <div className={s.profileBar}>
-                <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile}/>
-                Profile Info
+            <div className={s.container2}>
+                <ProfilePagePhoto savePhoto={props.savePhoto}
+                                  isOwner={props.isOwner}
+                                  profile={props.profile}/>
+                <ProfileInfo getUserProfile={props.getUserProfile} profile={props.profile}
+                             updateProfileInfo={props.updateProfileInfo}/>
             </div>
+
         </div>
     );
 }

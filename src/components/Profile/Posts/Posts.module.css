@@ -1,6 +1,13 @@
 .posts{
-    padding: 20px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
 
+}
+
+.postsText {
+    font-family: cursive;
+    font-size: 20px;
 }
 
 .buttonAddPost {
@@ -16,16 +23,11 @@
     height: 50px;
     width: 10%;
 }
-
-.addForm {
+.addPostForm {
     display: flex;
-    align-content: space-between;
-    width: 100%;
-    padding-left: 50px;
 }
 
-
-input[type=text] {
+ input[type=text] {
     font-size: 25px;
     width: 80%;
     height: 40%;

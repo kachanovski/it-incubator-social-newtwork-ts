@@ -9,9 +9,29 @@ export type messageType = {
 
 export type profilePageType = {
     posts: Array<postsType>
-    profile: any
+    profile: ProfileType | null
     status: string
 }
+export type ProfileType = {
+    userId?: number | null
+    lookingForAJob?: boolean | null
+    lookingForAJobDescription?: string | null
+    fullName?: string | null
+    contacts?: ContactsType | null
+
+}
+
+type ContactsType = {
+    github?: string | null
+    vk?: string | null
+    facebook?: string | null
+    instagram?: string | null
+    twitter?: string | null
+    website?: string | null
+    youtube?: string | null
+    mainLink?: string | null
+}
+
 export type postsType = {
     id: number
     textPost: string
@@ -33,6 +53,7 @@ export type UserType = {
     status: string | null
     photos: PhotosType
     followed: boolean
+    lookingForAJob: boolean
 }
 type PhotosType = {
     small: string
